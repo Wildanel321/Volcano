@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberGuardian - Edukasi Keamanan Siber</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset dan Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f9ff;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, #0d47a1, #1976d2);
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo i {
+            font-size: 28px;
+            color: #bbdefb;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        nav ul li a.active {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(13, 71, 161, 0.85), rgba(25, 118, 210, 0.9)), url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            margin-bottom: 50px;
+        }
+        
+        .hero h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        
+        .slogan {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-left: 4px solid #bbdefb;
+            padding: 15px 20px;
+            font-size: 22px;
+            font-weight: 600;
+            max-width: 900px;
+            margin: 30px auto;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: #ff9800;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .cta-button:hover {
+            background-color: #f57c00;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Content Sections */
+        section {
+            padding: 60px 0;
+        }
+        
+        section:nth-child(even) {
+            background-color: #e8f4ff;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: #0d47a1;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: #ff9800;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+            color: #1976d2;
+        }
+        
+        /* Card Styles */
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        .card-icon {
+            background-color: #1976d2;
+            color: white;
+            font-size: 32px;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .card-content {
+            padding: 25px;
+        }
+        
+        .card-content h3 {
+            color: #0d47a1;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        /* Content Box Styles */
+        .content-box {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #1976d2;
+        }
+        
+        .content-box h3 {
+            color: #0d47a1;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .content-box ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .content-box li {
+            margin-bottom: 10px;
+        }
+        
+        .warning-box {
+            background-color: #fff3e0;
+            border-left: 5px solid #ff9800;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .tip-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        /* Password Strength Meter */
+        .password-meter {
+            margin: 25px 0;
+        }
+        
+        .meter-bar {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        
+        .meter-fill {
+            height: 100%;
+            width: 0%;
+            background-color: #f44336;
+            transition: width 0.5s, background-color 0.5s;
+        }
+        
+        .meter-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        /* Tools Section */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .tool-item {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+        
+        .tool-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .tool-item i {
+            font-size: 36px;
+            color: #1976d2;
+            margin-bottom: 15px;
+        }
+        
+        .tool-item h4 {
+            margin-bottom: 10px;
+            color: #0d47a1;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #0d47a1;
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 50px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #bbdefb;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #e3f2fd;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .footer-section a:hover {
+            color: #ff9800;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbdefb;
+            font-size: 14px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 36px;
+            }
+            
+            .card-container {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px 0;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .hero {
+                padding: 60px 15px;
+            }
+            
+            .hero h2 {
+                font-size: 30px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .slogan {
+                font-size: 18px;
+                padding: 12px 15px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .content-box {
+                padding: 20px;
+            }
+            
+            .cta-button {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <h1>CyberGuardian</h1>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#home" class="active">Beranda</a></li>
+                    <li><a href="#pengertian">Pengertian</a></li>
+                    <li><a href="#mengatasi">Cara Mengatasi</a></li>
+                    <li><a href="#password">Panduan Password</a></li>
+                    <li><a href="#tools">Tools & Sumber Daya</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h2>Edukasi Keamanan Siber untuk Semua</h2>
+            <p>Di era digital, ancaman siber mengintai setiap saat. Website ini hadir sebagai panduan praktis untuk masyarakat Indonesia agar lebih waspada dan mampu melindungi diri sendiri di dunia maya.</p>
+            
+            <div class="slogan">
+                <i class="fas fa-quote-left"></i>
+                Lindungi Diri dari Kejahatan Siber dengan Rajin Ganti Password
+                <i class="fas fa-quote-right"></i>
+            </div>
+            
+            <a href="#password" class="cta-button">Pelajari Panduan Password <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    <!-- Featured Cards -->
+    <div class="container">
+        <div class="card-container">
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-question-circle"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Apa Itu Kejahatan Siber?</h3>
+                    <p>Kejahatan yang terjadi di dunia digital dengan tujuan merugikan korban. Pelajari jenis-jenis ancaman siber yang paling umum dan cara mengenalinya.</p>
+                    <a href="#pengertian">Pelajari Lebih Lanjut →</a>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Cara Mengatasi Ancaman</h3>
+                    <p>Langkah-langkah praktis yang harus dilakukan ketika menghadapi berbagai jenis ancaman keamanan siber, dari phishing hingga peretasan akun.</p>
+                    <a href="#mengatasi">Pelajari Lebih Lanjut →</a>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-key"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Panduan Password Aman</h3>
+                    <p>Password adalah kunci pertahanan digital Anda. Pelajari cara membuat password super kuat dan mengelola keamanan akun dengan efektif.</p>
+                    <a href="#password">Pelajari Lebih Lanjut →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pengertian Section -->
+    <section id="pengertian">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-info-circle"></i> Pengertian Kejahatan Siber</h2>
+            
+            <div class="content-box">
+                <h3><i class="fas fa-exclamation-triangle"></i> Apa Itu Kejahatan Siber?</h3>
+                <p>Kejahatan siber (cyber crime) adalah segala aktivitas kriminal yang dilakukan dengan menggunakan komputer, jaringan, atau perangkat digital sebagai alat atau target. Tujuannya adalah untuk mendapatkan keuntungan finansial, mencuri data sensitif, atau menyebabkan kerusakan.</p>
+                
+                <div class="warning-box">
+                    <h4><i class="fas fa-lightbulb"></i> Mengapa Password Sering Jadi Sasaran?</h4>
+                    <p>Password adalah kunci utama untuk mengakses informasi pribadi dan akun penting. Jika password lemah atau sama di banyak akun, risiko kebobolan sangat besar. Penjahat siber dapat menggunakan password yang dicuri untuk mengakses email, media sosial, rekening bank, dan layanan penting lainnya.</p>
+                </div>
+            </div>
+            
+            <div class="content-box">
+                <h3><i class="fas fa-bug"></i> Jenis-Jenis Kejahatan Siber yang Wajib Diketahui</h3>
+                
+                <div class="card-container">
+                    <div class="card">
+                        <div class="card-content">
+                            <h4><i class="fas fa-fish"></i> Phishing</h4>
+                            <p>Penipuan dengan email, SMS, atau website palsu yang meniru identitas organisasi terpercaya untuk mencuri data pribadi seperti username, password, dan nomor kartu kredit.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-content">
+                            <h4><i class="fas fa-virus"></i> Malware</h4>
+                            <p>Software berbahaya seperti virus, ransomware, spyware, atau trojan yang dirancang untuk merusak sistem, mencuri data, atau mengambil alih kendali perangkat.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-content">
+                            <h4><i class="fas fa-user-secret"></i> Hacking & Peretasan</h4>
+                            <p>Upaya membobol sistem komputer atau akun pribadi tanpa izin untuk mencuri data, mengubah informasi, atau menggunakan sumber daya sistem untuk keperluan ilegal.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cara Mengatasi Section -->
+    <section id="mengatasi">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-first-aid"></i> Cara Mengatasi Ancaman Siber</h2>
+            
+            <div class="content-box">
+                <h3><i class="fas fa-envelope"></i> Jika Menduga Ada Upaya Phishing</h3>
+                <ul>
+                    <li><strong>Jangan klik link atau lampiran mencurigakan</strong> dalam email atau pesan yang tidak Anda minta</li>
+                    <li><strong>Periksa alamat pengirim dan URL</strong> dengan teliti - perhatikan kesalahan ketik atau domain yang tidak biasa</li>
+                    <li>Jika ragu, <strong>hubungi langsung organisasi yang disebutkan</strong> melalui saluran resmi</li>
+                    <li><strong>Laporkan sebagai spam/phishing</strong> ke penyedia layanan email Anda</li>
+                    <li><strong>Jangan pernah memberikan informasi sensitif</strong> melalui email atau telepon yang tidak Anda inisiasi</li>
+                </ul>
+            </div>
+            
+            <div class="content-box">
+                <h3><i class="fas fa-user-lock"></i> Jika Akun Media Sosial atau Email Diretas</h3>
+                <div class="warning-box">
+                    <h4><i class="fas fa-exclamation-circle"></i> Langkah Darurat</h4>
+                    <p><strong>Segera ganti password!</strong> Gunakan password yang sangat kuat dan unik yang belum pernah Anda gunakan sebelumnya.</p>
+                </div>
+                
+                <ul>
+                    <li>Gunakan fitur <strong>"Log out dari semua perangkat"</strong> jika tersedia</li>
+                    <li>Periksa <strong>pengaturan keamanan</strong> dan aktivitas login terbaru untuk memastikan tidak ada akses tidak sah</li>
+                    <li><strong>Aktifkan Verifikasi 2 Langkah (2FA)</strong> segera untuk lapisan keamanan tambahan</li>
+                    <li><strong>Periksa pengaturan pemulihan akun</strong> seperti alamat email alternatif atau nomor telepon</li>
+                    <li>Beri tahu teman/kontak Anda bahwa akun Anda pernah dibobol untuk mencegah penipuan lanjutan</li>
+                </ul>
+            </div>
+            
+            <div class="content-box">
+                <h3><i class="fas fa-shield-virus"></i> Jika Terinfeksi Malware</h3>
+                <ul>
+                    <li><strong>Putuskan koneksi internet</strong> (unplug kabel LAN/matikan WiFi) untuk mencegah penyebaran atau pencurian data lebih lanjut</li>
+                    <li>Jalankan <strong>scan mendalam dengan antivirus terpercaya</strong> dalam mode aman (safe mode)</li>
+                    <li><strong>Pulihkan sistem dari cadangan (backup)</strong> yang bersih dan terpercaya</li>
+                    <li>Perbarui semua perangkat lunak dan sistem operasi ke versi terbaru setelah pembersihan</li>
+                </ul>
+                
+                <div class="tip-box">
+                    <h4><i class="fas fa-lightbulb"></i> Pencegahan Terbaik</h4>
+                    <p><strong>Selalu backup data penting secara rutin</strong> ke media penyimpanan eksternal atau layanan cloud terpercaya. Dengan backup yang teratur, Anda dapat memulihkan data jika terjadi serangan ransomware atau kerusakan sistem.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Panduan Password Section -->
+    <section id="password">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-key"></i> Panduan Password & Keamanan Akun</h2>
+            
+            <div class="content-box">
+                <h3><i class="fas fa-sync-alt"></i> Mengapa Rajin Ganti Password Itu Penting?</h3>
+                <p>Mengganti password secara berkala adalah langkah penting dalam menjaga keamanan digital karena:</p>
+                <ul>
+                    <li><strong>Mencegah penyalahgunaan data</strong> jika terjadi kebocoran tanpa sepengetahuan Anda</li>
+                    <li><strong>Membatasi kerusakan</strong> jika password Anda dicuri - penjahat hanya memiliki akses untuk waktu terbatas</li>
+                    <li><strong>Melindungi dari serangan brute force</strong> yang mencoba menebak password Anda</li>
+                    <li><strong>Memberi kesempatan untuk memperkuat keamanan</strong> dengan password yang lebih kompleks</li>
+                </ul>
+            </div>
+            
+            <div class="content-box">
+                <h3><i class="fas fa-lock"></i> Cara Membuat Password SUPER KUAT</h3>
+                
+                <div class="password-meter">
+                    <div class="meter-bar">
+                        <div class="meter-fill" id="passwordStrength"></div>
+                    </div>
+                    <div class="meter-labels">
+                        <span>Lemah</span>
+                        <span>Sedang</span>
+                        <span>Kuat</span>
+                        <span>Sangat Kuat</span>
+                    </div>
+                </div>
+                
+                <ul>
+                    <li><strong>Minimal 12 karakter</strong> - semakin panjang semakin baik</li>
+                    <li><strong>Kombinasi huruf besar-kecil, angka, dan simbol</strong> - contoh: <code>A$b5!kL9@mN2#</code></li>
+                    <li><strong>Bukan kata yang ada di kamus</strong> atau informasi pribadi (tanggal lahir, nama, hewan peliharaan)</li>
+                    <li><strong>Gunakan frasa unik</strong> yang mudah diingat tetapi sulit ditebak</li>
+                </ul>
+                
+                <div class="tip-box">
+                    <h4><i class="fas fa-lightbulb"></i> Teknik Membuat Password Kuat yang Mudah Diingat</h4>
+                    <p>Gunakan kalimat pribadi dan ambil huruf pertama setiap kata, lalu tambahkan angka dan simbol. Contoh: <code>"Mari kita ganti password setiap 3 bulan!"</code> menjadi <code>Mkgp!s3b@n</code>.</p>
+                </div>
+            </div>
+            
+            <div class="content-box">
+                <h3><i class="fas fa-user-cog"></i> Tips Manajemen Password & Keamanan Akun</h3>
+                
+                <div class="card-container">
+                    <div class="card">
+                        <div class="card-content">
+                            <h4><i class="fas fa-vault"></i> Password Manager</h4>
+                            <p>Gunakan tools seperti Bitwarden, LastPass, atau KeePass untuk menyimpan dan membuat password unik untuk tiap akun. Anda hanya perlu mengingat satu master password.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-content">
+                            <h4><i class="fas fa-mobile-alt"></i> Verifikasi 2 Langkah (2FA)</h4>
+                            <p>Aktifkan 2FA untuk lapisan keamanan tambahan. Gunakan aplikasi authenticator (Google Authenticator, Authy) yang lebih aman daripada SMS.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-content">
+                            <h4><i class="fas fa-calendar-alt"></i> Frekuensi Ganti Password</h4>
+                            <p>Ganti password setiap 3-6 bulan untuk akun penting (email, bank, medsos utama). Segera ganti jika ada berita kebocoran data atau aktivitas mencurigakan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools & Resources Section -->
+    <section id="tools">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-tools"></i> Tools & Sumber Daya</h2>
+            
+            <div class="tools-grid">
+                <div class="tool-item">
+                    <i class="fas fa-check-circle"></i>
+                    <h4>Cek Kekuatan Password</h4>
+                    <p>Gunakan tools online untuk mengevaluasi kekuatan password Anda sebelum menggunakannya.</p>
+                </div>
+                
+                <div class="tool-item">
+                    <i class="fas fa-search"></i>
+                    <h4>Cek Kebocoran Data</h4>
+                    <p>Periksa apakah email Anda terlibat dalam kebocoran data di <a href="https://haveibeenpwned.com" target="_blank">haveibeenpwned.com</a>.</p>
+                </div>
+                
+                <div class="tool-item">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h4>Aplikasi Authenticator</h4>
+                    <p>Google Authenticator, Authy, atau Microsoft Authenticator untuk 2FA yang aman.</p>
+                </div>
+                
+                <div class="tool-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>Antivirus Terpercaya</h4>
+                    <p>Avast, Bitdefender, atau Windows Defender untuk perlindungan real-time.</p>
+                </div>
+            </div>
+            
+            <div class="content-box">
+                <h3><i class="fas fa-exclamation-triangle"></i> Tempat Melaporkan Kejahatan Siber</h3>
+                <ul>
+                    <li><strong>Patroli Siber (patrolisiber.id)</strong> - Portal pelaporan kejahatan siber oleh BSSN</li>
+                    <li><strong>Kantor polisi terdekat</strong> - Untuk kasus dengan kerugian finansial signifikan</li>
+                    <li><strong>Layanan pelaporan dari penyedia layanan</strong> - Facebook, Google, Twitter, dll memiliki sistem pelaporan untuk akun yang diretas</li>
+                    <li><strong>ID-CERT (id-cert.id)</strong> - Layanan respon insiden keamanan komputer</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>CyberGuardian</h3>
+                    <p>Website edukasi keamanan siber untuk masyarakat Indonesia. Mari bersama-sama meningkatkan kesadaran dan kemampuan melindungi diri di dunia digital.</p>
+                    <p><i class="fas fa-envelope"></i> info@cyberguardian.id</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Navigasi Cepat</h3>
+                    <a href="#home">Beranda</a>
+                    <a href="#pengertian">Pengertian Kejahatan Siber</a>
+                    <a href="#mengatasi">Cara Mengatasi</a>
+                    <a href="#password">Panduan Password</a>
+                    <a href="#tools">Tools & Sumber Daya</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Tips Keamanan</h3>
+                    <p><i class="fas fa-check"></i> Rajin ganti password</p>
+                    <p><i class="fas fa-check"></i> Aktifkan verifikasi 2 langkah</p>
+                    <p><i class="fas fa-check"></i> Waspada link mencurigakan</p>
+                    <p><i class="fas fa-check"></i> Backup data secara rutin</p>
+                    <p><i class="fas fa-check"></i> Update software & sistem</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 CyberGuardian. Hak Cipta Dilindungi. | Dibuat dengan <i class="fas fa-heart" style="color:#ff9800"></i> untuk Indonesia yang lebih aman secara digital.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            const nav = document.getElementById('mainNav');
+            nav.style.display = nav.style.display === 'block' ? 'none' : 'block';
+        });
+        
+        // Update active nav link on scroll
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav ul li a');
+        
+        window.addEventListener('scroll', function() {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Password strength meter simulation
+        const passwordStrength = document.getElementById('passwordStrength');
+        const strengthLevels = [
+            {width: '25%', color: '#f44336'},
+            {width: '50%', color: '#ff9800'},
+            {width: '75%', color: '#4caf50'},
+            {width: '100%', color: '#2e7d32'}
+        ];
+        
+        let currentLevel = 0;
+        
+        // Animate password strength meter
+        function animatePasswordStrength() {
+            if (currentLevel < strengthLevels.length) {
+                passwordStrength.style.width = strengthLevels[currentLevel].width;
+                passwordStrength.style.backgroundColor = strengthLevels[currentLevel].color;
+                currentLevel++;
+                
+                if (currentLevel === strengthLevels.length) {
+                    // Reset animation after reaching max
+                    setTimeout(() => {
+                        currentLevel = 0;
+                        setTimeout(animatePasswordStrength, 500);
+                    }, 2000);
+                } else {
+                    setTimeout(animatePasswordStrength, 800);
+                }
+            }
+        }
+        
+        // Start animation after page loads
+        window.addEventListener('load', function() {
+            setTimeout(animatePasswordStrength, 1000);
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (window.innerWidth <= 768) {
+                        document.getElementById('mainNav').style.display = 'none';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
